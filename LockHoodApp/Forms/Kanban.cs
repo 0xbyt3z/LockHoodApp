@@ -20,10 +20,11 @@ namespace LockHoodApp.Forms
 
         private string currentTaskID;
         private enum StatusTypes { todo, inprogress, testing, finished }
+        private string DB = "Data Source=hello.db";
 
         private void Migrate()
         {
-            using (var connection = new SqliteConnection("Data Source=hello.db"))
+            using (var connection = new SqliteConnection(DB))
             {
                 connection.Open();
 
@@ -44,7 +45,9 @@ namespace LockHoodApp.Forms
             dgvInProgress.Rows.Clear();
             dgvFinished.Rows.Clear();
 
-            using (var connection = new SqliteConnection("Data Source=hello.db"))
+            
+
+            using (var connection = new SqliteConnection(DB))
             {
                 connection.Open();
 
@@ -76,6 +79,10 @@ namespace LockHoodApp.Forms
                         }
                     }
                 }
+                dgvTodo.ClearSelection();
+                dgvTesting.ClearSelection();
+                dgvInProgress.ClearSelection();
+                dgvFinished.ClearSelection();
             }
         }
 
@@ -84,6 +91,14 @@ namespace LockHoodApp.Forms
             Migrate();
         }
 
+        private void AdjustDatgridviews()
+        {
+            int datgridwidth = this.Width /4;
+            dgvFinished.Width = datgridwidth;
+            dgvTodo.Width = datgridwidth;
+            dgvTesting.Width = datgridwidth;
+            dgvInProgress.Width = datgridwidth;
+        }
         private void dgvTodo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -92,16 +107,19 @@ namespace LockHoodApp.Forms
         private void changeState(StatusTypes changeto)
         {
 
-            using (var connection = new SqliteConnection("Data Source=hello.db"))
+            using (var connection = new SqliteConnection(DB))
             {
                 connection.Open();
 
                 var command = connection.CreateCommand();
                 command.CommandText = $@"
-                    update tasks set status='{changeto}' where id={currentTaskID}
+                   update tasks set status='{changeto}' where id={currentTaskID}
                 ";
-               
-
+                
+               //string query = $@"
+               //     update tasks set status='{changeto}' where id={currentTaskID}
+               // ";
+               // MessageBox.Show(query);
                 command.ExecuteNonQuery();
 
             }
@@ -111,12 +129,16 @@ namespace LockHoodApp.Forms
 
         private void dgvTesting_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
+            
+
             currentTaskID = dgvTesting.Rows[e.ColumnIndex - 1].Cells[0].Value.ToString();
         }
 
         private void dgvTodo_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             currentTaskID = dgvTodo.Rows[e.ColumnIndex - 1].Cells[0].Value.ToString();
+
+
         }
 
         private void ContextmenustripItem_Click(object sender, EventArgs e)
@@ -142,7 +164,7 @@ namespace LockHoodApp.Forms
         private void Kanban_Shown(object sender, EventArgs e)
         {
             getTasks();
-
+            AdjustDatgridviews();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -157,17 +179,53 @@ namespace LockHoodApp.Forms
 
         private void iNPROGRESSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            changeState(StatusTypes.inprogress);
         }
 
         private void dgvInProgress_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             currentTaskID = dgvInProgress.Rows[e.ColumnIndex - 1].Cells[0].Value.ToString();
+            
+
         }
 
         private void dgvFinished_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+
+            
+
+
+        }
+
+        private void tODOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeState(StatusTypes.todo);
+        }
+
+        private void tESTINGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeState(StatusTypes.testing);
+        }
+
+        private void fINISHEDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeState(StatusTypes.finished);
+        }
+
+        private void tODOToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            changeState(StatusTypes.todo);
+        }
+
+        private void dgvFinished_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
             currentTaskID = dgvFinished.Rows[e.ColumnIndex - 1].Cells[0].Value.ToString();
+        }
+
+        private void Kanban_SizeChanged(object sender, EventArgs e)
+        {
+            AdjustDatgridviews();
+
         }
     }
 }

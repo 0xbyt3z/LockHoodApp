@@ -136,7 +136,7 @@ namespace LockHoodApp
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //OpenChildForm(new Forms.RawMaterials(), sender);
+            OpenChildForm(new Forms.Kanban(), sender);
         }
     }
 }

@@ -34,6 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmsTodo = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ContextmenustripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextmenustripItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,9 +143,10 @@
             this.panel1.Controls.Add(this.dgvTesting);
             this.panel1.Controls.Add(this.dgvInProgress);
             this.panel1.Controls.Add(this.dgvTodo);
-            this.panel1.Location = new System.Drawing.Point(74, 73);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(846, 412);
+            this.panel1.Size = new System.Drawing.Size(932, 532);
             this.panel1.TabIndex = 2;
             // 
             // dgvFinished
@@ -153,9 +157,9 @@
             this.dgvFinished.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvFinished.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkOrange;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Menu;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -164,7 +168,16 @@
             this.dgvFinished.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
             this.dataGridViewTextBoxColumn3});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFinished.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFinished.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvFinished.EnableHeadersVisualStyles = false;
             this.dgvFinished.Location = new System.Drawing.Point(585, 0);
             this.dgvFinished.MultiSelect = false;
             this.dgvFinished.Name = "dgvFinished";
@@ -175,9 +188,10 @@
             this.dgvFinished.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.dgvFinished.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DimGray;
             this.dgvFinished.RowTemplate.Height = 50;
-            this.dgvFinished.Size = new System.Drawing.Size(195, 412);
+            this.dgvFinished.Size = new System.Drawing.Size(195, 532);
             this.dgvFinished.TabIndex = 11;
             this.dgvFinished.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvFinished_CellMouseClick);
+            this.dgvFinished.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvFinished_CellMouseDown);
             // 
             // Column5
             // 
@@ -188,7 +202,7 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Finished";
+            this.dataGridViewTextBoxColumn3.HeaderText = "FINISHED";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
@@ -206,6 +220,7 @@
             this.tODOToolStripMenuItem1.Name = "tODOToolStripMenuItem1";
             this.tODOToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
             this.tODOToolStripMenuItem1.Text = "TODO";
+            this.tODOToolStripMenuItem1.Click += new System.EventHandler(this.tODOToolStripMenuItem1_Click);
             // 
             // iNPROGRESSToolStripMenuItem
             // 
@@ -227,19 +242,28 @@
             this.dgvTesting.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvTesting.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTesting.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTesting.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Menu;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTesting.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTesting.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTesting.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
             this.dataGridViewTextBoxColumn2});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTesting.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvTesting.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvTesting.EnableHeadersVisualStyles = false;
             this.dgvTesting.Location = new System.Drawing.Point(390, 0);
             this.dgvTesting.MultiSelect = false;
             this.dgvTesting.Name = "dgvTesting";
@@ -248,9 +272,9 @@
             this.dgvTesting.RowHeadersVisible = false;
             this.dgvTesting.RowTemplate.ContextMenuStrip = this.cmsTesting;
             this.dgvTesting.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.dgvTesting.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Coral;
+            this.dgvTesting.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DarkGray;
             this.dgvTesting.RowTemplate.Height = 50;
-            this.dgvTesting.Size = new System.Drawing.Size(195, 412);
+            this.dgvTesting.Size = new System.Drawing.Size(195, 532);
             this.dgvTesting.TabIndex = 10;
             this.dgvTesting.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTesting_CellMouseDown);
             // 
@@ -263,7 +287,7 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Testing";
+            this.dataGridViewTextBoxColumn2.HeaderText = "TESTING";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
@@ -274,19 +298,28 @@
             this.dgvInProgress.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvInProgress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvInProgress.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInProgress.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.MediumSeaGreen;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Menu;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInProgress.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvInProgress.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInProgress.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column3,
             this.dataGridViewTextBoxColumn1});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInProgress.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvInProgress.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvInProgress.EnableHeadersVisualStyles = false;
             this.dgvInProgress.Location = new System.Drawing.Point(195, 0);
             this.dgvInProgress.MultiSelect = false;
             this.dgvInProgress.Name = "dgvInProgress";
@@ -295,9 +328,9 @@
             this.dgvInProgress.RowHeadersVisible = false;
             this.dgvInProgress.RowTemplate.ContextMenuStrip = this.cmsInProgress;
             this.dgvInProgress.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.dgvInProgress.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LimeGreen;
+            this.dgvInProgress.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DarkGray;
             this.dgvInProgress.RowTemplate.Height = 50;
-            this.dgvInProgress.Size = new System.Drawing.Size(195, 412);
+            this.dgvInProgress.Size = new System.Drawing.Size(195, 532);
             this.dgvInProgress.TabIndex = 9;
             this.dgvInProgress.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInProgress_CellMouseDown);
             // 
@@ -310,7 +343,7 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "In-Progress";
+            this.dataGridViewTextBoxColumn1.HeaderText = "IN-PROGRESS";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
@@ -328,48 +361,52 @@
             this.tODOToolStripMenuItem.Name = "tODOToolStripMenuItem";
             this.tODOToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.tODOToolStripMenuItem.Text = "TODO";
+            this.tODOToolStripMenuItem.Click += new System.EventHandler(this.tODOToolStripMenuItem_Click);
             // 
             // tESTINGToolStripMenuItem
             // 
             this.tESTINGToolStripMenuItem.Name = "tESTINGToolStripMenuItem";
             this.tESTINGToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.tESTINGToolStripMenuItem.Text = "TESTING";
+            this.tESTINGToolStripMenuItem.Click += new System.EventHandler(this.tESTINGToolStripMenuItem_Click);
             // 
             // fINISHEDToolStripMenuItem
             // 
             this.fINISHEDToolStripMenuItem.Name = "fINISHEDToolStripMenuItem";
             this.fINISHEDToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.fINISHEDToolStripMenuItem.Text = "FINISHED";
+            this.fINISHEDToolStripMenuItem.Click += new System.EventHandler(this.fINISHEDToolStripMenuItem_Click);
             // 
             // dgvTodo
             // 
             this.dgvTodo.AllowUserToAddRows = false;
             this.dgvTodo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvTodo.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvTodo.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvTodo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTodo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTodo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkTurquoise;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTodo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvTodo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTodo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
             this.Column1});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTodo.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTodo.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvTodo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvTodo.EnableHeadersVisualStyles = false;
             this.dgvTodo.Location = new System.Drawing.Point(0, 0);
             this.dgvTodo.MultiSelect = false;
             this.dgvTodo.Name = "dgvTodo";
@@ -378,9 +415,9 @@
             this.dgvTodo.RowHeadersVisible = false;
             this.dgvTodo.RowTemplate.ContextMenuStrip = this.cmsTodo;
             this.dgvTodo.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.dgvTodo.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.dgvTodo.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DarkGray;
             this.dgvTodo.RowTemplate.Height = 50;
-            this.dgvTodo.Size = new System.Drawing.Size(195, 412);
+            this.dgvTodo.Size = new System.Drawing.Size(195, 532);
             this.dgvTodo.TabIndex = 8;
             this.dgvTodo.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTodo_CellMouseDown);
             // 
@@ -407,6 +444,7 @@
             this.Text = "Kanban";
             this.Load += new System.EventHandler(this.Kanban_Load);
             this.Shown += new System.EventHandler(this.Kanban_Shown);
+            this.SizeChanged += new System.EventHandler(this.Kanban_SizeChanged);
             this.cmsTodo.ResumeLayout(false);
             this.cmsTesting.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -431,14 +469,8 @@
         private ToolStripMenuItem toolStripMenuItem3;
         private Panel panel1;
         private DataGridView dgvFinished;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridView dgvTesting;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridView dgvInProgress;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridView dgvTodo;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column1;
@@ -450,5 +482,11 @@
         private ToolStripMenuItem tODOToolStripMenuItem1;
         private ToolStripMenuItem iNPROGRESSToolStripMenuItem;
         private ToolStripMenuItem tESTINGToolStripMenuItem1;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

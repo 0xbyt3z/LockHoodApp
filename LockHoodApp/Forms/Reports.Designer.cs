@@ -1,6 +1,6 @@
 ﻿namespace LockHoodApp.Forms
 {
-    partial class KanbanChild
+    partial class Reports
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGenerateInvoice = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnGenerateInvoice
             // 
-            this.button1.Location = new System.Drawing.Point(74, 83);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(196, 42);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGenerateInvoice.Location = new System.Drawing.Point(55, 104);
+            this.btnGenerateInvoice.Name = "btnGenerateInvoice";
+            this.btnGenerateInvoice.Size = new System.Drawing.Size(164, 59);
+            this.btnGenerateInvoice.TabIndex = 0;
+            this.btnGenerateInvoice.Text = "Invoice";
+            this.btnGenerateInvoice.UseVisualStyleBackColor = true;
+            this.btnGenerateInvoice.Click += new System.EventHandler(this.btnGenerateInvoice_Click);
             // 
-            // KanbanChild
+            // Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 450);
-            this.Controls.Add(this.button1);
-            this.Name = "KanbanChild";
-            this.Text = "KanbanChild";
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnGenerateInvoice);
+            this.Name = "Reports";
+            this.Text = "Reports";
+            this.Load += new System.EventHandler(this.Reports_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Button button1;
+        private Button btnGenerateInvoice;
     }
 }
