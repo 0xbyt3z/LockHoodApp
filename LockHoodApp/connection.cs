@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LockHoodApp
 {
-    internal class connection
+   internal class connection
     {
-        SqlConnection con;
+        public SqlConnection con;
 
         public connection()
         {
